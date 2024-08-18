@@ -1,0 +1,36 @@
+.page {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;;
+    gap: 2rem;
+}
+
+.card {
+    width: 10rem;
+    height: 14rem;
+    box-shadow: lightgray 0px 0px 10px 2px;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.completed {
+    position: relative;
+    left: 40%;
+    top: -40%;
+}
+
+.pageTitle {
+    margin-bottom: 2rem;
+}
+
+.title {
+    text-transform: capitalize;
+}
+

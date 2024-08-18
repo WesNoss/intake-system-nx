@@ -4,10 +4,6 @@
     display: flex;
 }
 
-.title {
-    color: rgb(40, 107, 162);
-}
-
 .form {
     display: flex;
     flex-direction: column;
