@@ -1,47 +1,53 @@
-import Router from 'next/router';
+'use client';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import styles from './page.module.css';
 
 
 export default function Login() {
+    const router = useRouter();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const userData = {
         "admin": "admin123",
         "member": "member123"
     } as any;
 
+    const { register, handleSubmit } = useForm();
+
     const onSubmit = (data: any) => {
         if (data.password === userData[data.username]) {
             if (data.username === "admin") {
-                Router.push('/admin');
+                router.push('/admin');
             } else {
-                Router.push('/selection');
+                router.push('/selection');
             }
         }
         setErrorMessage('Username or password is invalid');
+        var resetForm = document.getElementById('login-form') as HTMLFormElement;
+        resetForm.reset();
     }
 
     function ErrorMessage() {
         if (errorMessage) {
             return(
-                <div className="error-container">{ errorMessage }</div>
+                <div className={styles.error}>{ errorMessage }</div>
             )
         }
     }
 
     return(
-    <div className="login-page-container">
-        <h1 className="login-page-title">Intake Login</h1>
-        <form id="login-form" onSubmit={handleSubmit(onSubmit)}>
-            <label className="text-input">
+    <div className={styles.container}>
+        <form id="login-form" className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <h1 className={styles.title}>Intake Login</h1>
+            <label>
                 <input required placeholder="Username" type="text" {...register("username")}/>
             </label>
-            <label className="text-input">
+            <label>
                 <input required placeholder="Password" type="password" {...register("password")}/>
             </label>
             <ErrorMessage></ErrorMessage>
-            <div className="button-container">
-                <button type="submit">Log in</button>
-            </div>
+            <button className={styles.button} type="submit">Log in</button>
         </form>
     </div>
     )
