@@ -105,6 +105,7 @@ button {
 
 button:hover {
   background: rgb(61, 133, 192);
+  cursor: pointer;
 }
 
 @media (prefers-color-scheme: dark) {
