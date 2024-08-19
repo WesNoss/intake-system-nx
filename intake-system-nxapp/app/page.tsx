@@ -17,20 +17,15 @@ export default function Home() {
 
     const onSubmit = (data: any) => {
         if (data.password === userData[data.username]) {
-            switch (data.username) {
-                case "admin":
-                    router.push('/admin');
-                    break;
-                case "member":
-                    router.push('/selection');
-                    break;
-                default:
-                    setErrorMessage('Username or password is invalid');
-                    var resetForm = document.getElementById('login-form') as HTMLFormElement;
-                    resetForm.reset();
-                    break;
-
+            if (data.username === "admin") {
+              router.push('/admin');
+            } else if (data.username === "member") {
+              router.push('/selection');
             }
+        } else {
+          setErrorMessage('Username or password is invalid');
+          var resetForm = document.getElementById('login-form') as HTMLFormElement;
+          resetForm.reset();
         }
     }
 
